@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset = "UTF-8">
+    <title>Dani's Website</title>
+
+    <style>
+      
+      /* General page styling */
+      body {
+        font-family: Garamond, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f9;
+        color: #333;
+      }
+
+      .inline-divs {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      /* Header */
+      .title-name {
+        font-size: 50px;
+        font-weight: bold;
+        font-family: Garamond;
+        color: rgb(211, 179, 219);
+        text-align: center;
+      }
+      .dani-image {
+        width: fit-content;
+        height: 400px;
+      }
+      header {
+        background: #90a565;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+      header p {
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      /* Sections */
+      section {
+        background: white;
+        margin: 1rem auto;
+        padding: 1.5rem;
+        max-width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      section h2 {
+        border-bottom: 2px solid rgb(211, 179, 219);;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        color: #506c50;
+      }
+
+      section h3 {
+        margin-top: 1.5rem;
+        color: #506c50;
+      }
+
+      section h4 {
+        margin-top: 1rem;
+        font-weight: normal;
+        color: #506c50;
+      }
+
+
+      /* Images */
+      .school-photos {
+        width: 50px;
+        object-fit: contain;
+        object-position: center;
+        display: inline-block;
+        margin-right: 50px;
+      }
+      
+      .fav-photos {
+        width: 100px;
+        display: inline-block;
+      }
+
+      /* Lists */
+      ul, ol {
+        padding-left: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+        vertical-align: center;
+      }
+
+      /* Blockquote styling */
+      blockquote {
+        font-style: italic;
+        margin: 1rem 0;
+        padding: 0.5rem 1rem;
+        border-left: 4px solid #59725c;
+        background: #f9f9ff;
+      }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Main Title -->
+  <header>
+    <h1 class = "title-name">Daniela Teran Martija</h1>
+    <img class = "dani-image" src = "images/daniPhoto.jpg">
+    <p><strong>Computer Science Student</strong> | Condominio Puertas de Asís, Casa 12</p>
+  </header>
+
+  <!-- Personal Presentation -->
+  <section>
+    <h2>About Me</h2>
+    <p>
+      I am a 19 years-young girl who was born, raised, and educated 
+      in San Diego. I moved to Guadalajara, Mexico, to connect with 
+      my Mexican heritage and I am very thankful that I did.
+    </p>
+    <blockquote>
+      "Have fun even if it's not the kind of fun everyone else is having." - C.S. Lewis
+    </blockquote>
+  </section>
+
+  <!-- Background -->
+  <section>
+    <h2>Background</h2>
+    <p>
+      My curiosity is the reason why I take advantage of the
+      opportunties around me. Whether that be through new
+      clases or outside groups and courses, I always try to
+      find the answers to my questions.
+
+      My professional goal in life is to work in an industry
+      that clearly adds to my community, not one that takes
+      away from it. Electronics especially catches my interest,
+      so I hope a job having to do with the bridge between software
+      and hardware.
+    </p>
+
+    <!-- Education -->
+    <section>
+      <h3>Education</h3>
+      <ul>
+        <div>
+          <div class = "inline-divs">
+            <img class = "school-photos" src = "images/OLMC.png">
+          </div>
+          <div class = "inline-divs">
+            <li><em>2011 - 2016</em>: <b>Our Lady of Mount Carmel Parish School</b></li>
+          </div>
+        </div>
+
+        <div>
+          <div class = "inline-divs">
+            <img class = "school-photos" src = "images/STD.webp">
+          </div>
+          <div class = "inline-divs">
+            <li><em>2016 - 2020</em>: <b>St. Didacus Parish School</b></li>
+          </div>
+        </div>
+
+        <div>
+          <div class = "inline-divs">
+            <img class = "school-photos" src = "images/OLP.jpeg">
+          </div>
+          <div class = "inline-divs">
+            <li><em>2020 - 2024</em>: <b>The Academy of Our Lady of Peace</b></li>
+          </div>
+        </div>
+          
+        <div>
+          <div class = "inline-divs">
+            <img class = "school-photos" src = "images/UP.jpg">
+          </div>
+          <div class = "inline-divs">
+            <li><em>2024 - Present</em>: <b>Universidad Panamericana Sede Guadalajara</b></li>
+          </div>  
+        </div>
+                       
+      </ul>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h3>Skills</h3>
+      <ol>
+        <li>Electronic Fuel Injection Systems - 60%</li>
+        <li>Embroidery - 75%</li>
+        <li>Photography - 80%</li>
+        <li>Cooking - 75%</li>
+        <li>English - 100%</li>
+        <li>Spanish - 90%</li>
+      </ol>
+    </section>
+  </section>
+
+  <!-- Hobbies -->
+  <section>
+    <h2>Hobbies</h2>
+
+    <!-- Favorite Food -->
+    <section>
+      <h3>Favorite Food</h3>
+
+      <h4>Top 5 Cuisines</h4>
+      <ul>
+        <li>Japanese</li>
+        <li>Italian</li>
+        <li>Mexican</li>
+        <li>Thai</li>
+        <li>Greek</li>
+      </ul>
+
+      <h4>Bottom 3 Cuisines</h4>
+      <ul>
+        <li>Scottish</li>
+        <li>Russian</li>
+        <li>Australian</li>
+      </ul>
+    </section>
+
+    <!-- Books, Movies & TV Shows -->
+    <section>
+      <h3>Favorites Books, Movies, and TV Shows</h3>
+
+      <div>
+        <div>
+          <ul>
+            <li>Books</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class = "inline-divs">
+            <img src = "images/middlegame.jpeg">
+          </div>
+          <div class = "inline-divs">
+            <ul>
+              <li>Middlegame - Seanan McGuire</li>
+              <li>The Prodigal Daughter - Jeffery Archer</li>
+              <li>Los Cuatro Acuerdos - Don Miguel Ruiz</li>
+            </ul>
+          </div>
+          
+        </div>
+
+      </div>
+      
+
+      <div>
+
+        <div>
+          <ul>
+            <li>Movies</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class = "inline-divs">
+            <img class = "fav-photos" src = "images/HTTYD.jpeg">
+          </div>
+
+          <div class = "inline-divs">
+            <ul>
+              <li>How to Train Your Dragon</li>
+              <li>Lord of the Rings</li>
+              <li>Bambi</li>
+            </ul>
+          </div>
+          
+        </div>
+        
+      </div>
+
+
+      <div>
+
+        <div>
+          <ul>
+            <li>TV Shows</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class = "inline-divs">
+            <img class = "fav-photos" src = "images/GOT.jpeg">
+          </div>
+          
+          <div class = "inline-divs">
+            <ul>
+              <li>Game of Thrones</li>
+              <li>The Office</li>
+              <li>Impractical Jokers</li>
+            </ul>
+          </div>
+          
+        </div>
+      
+    </section>
+  </section>
+    <a href = "https://www.youtube.com/watch?v=G3e-cpL7ofc" target ="_blank">link to another website</a>
+    
+</body>
+
+</html>

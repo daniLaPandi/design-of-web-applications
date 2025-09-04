@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Images</title>
+        <style>
+            .photo {
+                width: 300px;
+                height: 300px;
+                object-fit: contain;
+                object-position: right;
+                border-width: 2px;
+                border-style: solid;
+                border-color: blue;
+                display: block;
+            }
+            .textbar {
+                font-size: 40px;
+                margin-left: 12px;
+                display: block;
+            }
+            .div-ex {
+                display: inline-block;
+                border-width: 2px;
+                border-style: dashed;
+                border-color: red;
+                width: 300px;
+                vertical-align: top;
+            }
+            .redbox {
+                background-color: red;
+                width: 300px;
+                height: 300px;
+                margin-right: 300px;
+            }
+            .bluebox {
+                background-color: blue;
+                width: 300px;
+                height: 300px;
+                margin-left: 300px;
+            }
+            .yellowbox {
+                background-color: yellow;
+                width: 300px;
+                height: 300px;
+                margin-left: 600px;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <input class = "textbar" type = "text" placeholder = "Search">      
+
+        <div class = "div-ex">
+            <img class = "photo" src = "cutepanda.jpg">
+            <input type = "checkbox">
+            <p>this is a paragraph</p>
+        </div>
+
+        <div class = "div-ex">
+            <img class = "photo" src = "cutepanda.jpg">
+            <input type = "checkbox">
+            <p>this is a paragraph</p>
+        </div>
+
+        <div class = "redbox">
+            top
+        </div>
+
+        <div class = "bluebox">
+            mid
+        </div>
+
+        <div class = "yellowbox">
+            bot
+        </div>
+
+    </body>
+
+</html>
