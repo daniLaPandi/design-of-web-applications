@@ -3,121 +3,14 @@
 
 <head>
     <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dani's Website</title>
-
-    <style>
-      
-      /* General page styling */
-      body {
-        font-family: Garamond, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background: #f4f4f9;
-        color: #333;
-      }
-
-      .inline-divs {
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      /* Header */
-      .title-name {
-        font-size: 50px;
-        font-weight: bold;
-        font-family: Garamond;
-        color: rgb(211, 179, 219);
-        text-align: center;
-      }
-      .dani-image {
-        width: fit-content;
-        height: 400px;
-      }
-      header {
-        background: #90a565;
-        color: white;
-        padding: 2rem;
-        text-align: center;
-      }
-      header h1 {
-        margin: 0;
-        font-size: 2.5rem;
-      }
-      header p {
-        margin-top: 0.5rem;
-        font-size: 1.2rem;
-      }
-
-      /* Sections */
-      section {
-        background: white;
-        margin: 1rem auto;
-        padding: 1.5rem;
-        max-width: 800px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-
-      section h2 {
-        border-bottom: 2px solid rgb(211, 179, 219);;
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
-        color: #506c50;
-      }
-
-      section h3 {
-        margin-top: 1.5rem;
-        color: #506c50;
-      }
-
-      section h4 {
-        margin-top: 1rem;
-        font-weight: normal;
-        color: #506c50;
-      }
-
-
-      /* Images */
-      .school-photos {
-        width: 50px;
-        object-fit: contain;
-        object-position: center;
-        display: inline-block;
-        margin-right: 50px;
-      }
-      
-      .fav-photos {
-        width: 100px;
-        display: inline-block;
-      }
-
-      /* Lists */
-      ul, ol {
-        padding-left: 1.5rem;
-        margin-top: 0.5rem;
-      }
-
-      li {
-        margin-bottom: 0.5rem;
-        vertical-align: center;
-      }
-
-      /* Blockquote styling */
-      blockquote {
-        font-style: italic;
-        margin: 1rem 0;
-        padding: 0.5rem 1rem;
-        border-left: 4px solid #59725c;
-        background: #f9f9ff;
-      }
-    </style>
+    <link href="./styles/website.css" type="text/css" rel="stylesheet"/>
 
 </head>
-
 <body>
 
-    <!-- Main Title -->
+  <!-- Main Title -->
   <header>
     <h1 class = "title-name">Daniela Teran Martija</h1>
     <img class = "dani-image" src = "images/daniPhoto.jpg">
@@ -137,83 +30,108 @@
     </blockquote>
   </section>
 
+  <hr>
+
   <!-- Background -->
   <section>
-    <h2>Background</h2>
-    <p>
-      My curiosity is the reason why I take advantage of the
-      opportunties around me. Whether that be through new
-      clases or outside groups and courses, I always try to
-      find the answers to my questions.
+    <div>
+      <h2>Background</h2>
+      <p>
+        My curiosity is the reason why I take advantage of the
+        opportunties around me. Whether that be through new
+        clases or outside groups and courses, I always try to
+        find the answers to my questions.
 
-      My professional goal in life is to work in an industry
-      that clearly adds to my community, not one that takes
-      away from it. Electronics especially catches my interest,
-      so I hope a job having to do with the bridge between software
-      and hardware.
-    </p>
+        My professional goal in life is to work in an industry
+        that clearly adds to my community, not one that takes
+        away from it. Electronics especially catches my interest,
+        so I hope a job having to do with the bridge between software
+        and hardware.
+      </p>
+    </div>
+    
 
     <!-- Education -->
     <section>
-      <h3>Education</h3>
-      <ul>
-        <div>
-          <div class = "inline-divs">
-            <img class = "school-photos" src = "images/OLMC.png">
+      <div>
+          <h3>Education</h3>
+        <ul>
+          <div>
+            <div class = "inline-divs">
+              <a href="https://www.olmc.school/" target="_blank">
+                <img class = "school-photos" src = "images/OLMC.png" alt="Elementary School" width="200">
+              </a>
+            </div>
+            <div class = "inline-divs">
+              <li><em>2011 - 2016</em>: <b><a href="https://www.olmc.school/" target="_blank">Our Lady of Mount Carmel Parish School</a></b></li>
+            </div>
           </div>
-          <div class = "inline-divs">
-            <li><em>2011 - 2016</em>: <b>Our Lady of Mount Carmel Parish School</b></li>
-          </div>
-        </div>
 
-        <div>
-          <div class = "inline-divs">
-            <img class = "school-photos" src = "images/STD.webp">
+          <div>
+            <div class = "inline-divs">
+              <a href="https://stdidacusparishschool.org/" target="_blank">
+                <img class = "school-photos" src = "images/STD.webp" alt="Middle School" width="200">
+              </a>
+            </div>
+            <div class = "inline-divs">
+              <li><em>2016 - 2020</em>: <b><a href="https://stdidacusparishschool.org/" target="_blank">St. Didacus Parish School</a></b></li>
+            </div>
           </div>
-          <div class = "inline-divs">
-            <li><em>2016 - 2020</em>: <b>St. Didacus Parish School</b></li>
-          </div>
-        </div>
 
-        <div>
-          <div class = "inline-divs">
-            <img class = "school-photos" src = "images/OLP.jpeg">
+          <div>
+            <div class = "inline-divs">
+              <a href="https://www.aolp.org/" target="_blank">
+                <img class = "school-photos" src = "images/OLP.jpeg" alt="High School" width="200">
+              </a>
+            </div>
+            <div class = "inline-divs">
+              <li><em>2020 - 2024</em>: <b><a href="https://www.aolp.org/" target="_blank">The Academy of Our Lady of Peace</a></b></li>
+            </div>
           </div>
-          <div class = "inline-divs">
-            <li><em>2020 - 2024</em>: <b>The Academy of Our Lady of Peace</b></li>
+            
+          <div>
+            <div class = "inline-divs">
+              <a href="https://www.up.edu.mx/" target="_blank">
+                <img class = "school-photos" src = "images/UP.jpg" alt="University" width="200">
+              </a>
+            </div>
+            <div class = "inline-divs">
+              <li><em>2024 - Present</em>: <b><a href="https://www.up.edu.mx/" target="_blank">Universidad Panamericana Sede Guadalajara</a></b></li>
+            </div>
           </div>
-        </div>
-          
-        <div>
-          <div class = "inline-divs">
-            <img class = "school-photos" src = "images/UP.jpg">
-          </div>
-          <div class = "inline-divs">
-            <li><em>2024 - Present</em>: <b>Universidad Panamericana Sede Guadalajara</b></li>
-          </div>  
-        </div>
-                       
-      </ul>
+                        
+        </ul>
+      </div>
+      
     </section>
+
 
     <!-- Skills -->
     <section>
-      <h3>Skills</h3>
-      <ol>
-        <li>Electronic Fuel Injection Systems - 60%</li>
-        <li>Embroidery - 75%</li>
-        <li>Photography - 80%</li>
-        <li>Cooking - 75%</li>
-        <li>English - 100%</li>
-        <li>Spanish - 90%</li>
-      </ol>
+      <div>
+        <h3>Skills</h3>
+        <ol>
+          <li>Electronic Fuel Injection Systems - 50%</li>
+          <li>Embroidery - 75%</li>
+          <li>Photography - 80%</li>
+          <li>Cooking - 75%</li>
+          <li>English - 100%</li>
+          <li>Spanish - 90%</li>
+        </ol>
+      </div>
     </section>
+
   </section>
 
-  <!-- Hobbies -->
-  <section>
-    <h2>Hobbies</h2>
+  <hr>
 
+  <!-- Hobbies -->
+  <section class = "hobbies-section">
+    <div>
+      <h2>Hobbies</h2>
+        <img src="images/cloud.png" class="sticky-img left" alt="Left corner image">
+        <img src="images/cloud.png" class="sticky-img right" alt="Right corner image">
+   
     <!-- Favorite Food -->
     <section>
       <h3>Favorite Food</h3>
@@ -238,18 +156,18 @@
     <!-- Books, Movies & TV Shows -->
     <section>
       <h3>Favorites Books, Movies, and TV Shows</h3>
-
+        
       <div>
         <div>
           <ul>
             <li>Books</li>
           </ul>
-        </div>
-
+        </div>  
         <div>
           <div class = "inline-divs">
-            <img src = "images/middlegame.jpeg">
+            <img class = "fav-photos" src = "images/middlegame.jpeg">
           </div>
+          
           <div class = "inline-divs">
             <ul>
               <li>Middlegame - Seanan McGuire</li>
@@ -257,14 +175,11 @@
               <li>Los Cuatro Acuerdos - Don Miguel Ruiz</li>
             </ul>
           </div>
-          
         </div>
-
       </div>
-      
+        
 
       <div>
-
         <div>
           <ul>
             <li>Movies</li>
@@ -275,7 +190,6 @@
           <div class = "inline-divs">
             <img class = "fav-photos" src = "images/HTTYD.jpeg">
           </div>
-
           <div class = "inline-divs">
             <ul>
               <li>How to Train Your Dragon</li>
@@ -283,14 +197,10 @@
               <li>Bambi</li>
             </ul>
           </div>
-          
         </div>
-        
       </div>
 
-
       <div>
-
         <div>
           <ul>
             <li>TV Shows</li>
@@ -301,7 +211,6 @@
           <div class = "inline-divs">
             <img class = "fav-photos" src = "images/GOT.jpeg">
           </div>
-          
           <div class = "inline-divs">
             <ul>
               <li>Game of Thrones</li>
@@ -309,13 +218,192 @@
               <li>Impractical Jokers</li>
             </ul>
           </div>
-          
         </div>
-      
+      </div>
+    </section>
+
+    <section>
+      <h3><a href="destination.html">My Favorite Spots (click here!)</h3>
+        <ul>
+          <li><a href="destination.html#sandiego">San Diego</a></li>
+          <li><a href="destination.html#sanfrancisco">San Francisco</a></li>
+          <li><a href="destination.html#julian">Julian</a></li>
+          <li><a href="destination.html#rome">Rome</a></li>
+          <li><a href="destination.html#chicago">Chicago</a></li>
+        </ul>
     </section>
   </section>
-    <a href = "https://www.youtube.com/watch?v=G3e-cpL7ofc" target ="_blank">link to another website</a>
+
     
+  <hr>
+  
+  <h1>Famous People: American Presidents</h1>
+
+  <!-- Famous Figures (from Code B) -->
+  <div class="row">
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/GW.jpg" alt="George Washington" style="width:100%">
+      <div class="container">
+        <h2>George Washington</h2>
+        <p class="title">President</p>
+        <p>1732 – 1799</p>
+        <p>First U.S. President, Commander-in-Chief of the Continental Army</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/AL.jpg" alt="Abraham Lincoln" style="width:100%">
+      <div class="container">
+        <h2>Abraham Lincoln</h2>
+        <p class="title">President</p>
+        <p>1809 – 1865</p>
+        <p>Emancipation Proclamation, Led U.S. through Civil War</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/TR.jpg" alt="Theodore Roosevelt" style="width:100%">
+      <div class="container">
+        <h2>Theodore "Teddy" Roosevelt</h2>
+        <p class="title">President</p>
+        <p>1858 – 1919</p>
+        <p>Progressive Reforms, Panama Canal, Nobel Peace Prize</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/FDR.jpg" alt="F.D. Roosevelt" style="width:100%">
+      <div class="container">
+        <h2>F.D. Roosevelt</h2>
+        <p class="title">President</p>
+        <p>1882 – 1945</p>
+        <p>New Deal, Led U.S. through World War II</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/images/BO.jpeg" alt="Barack Obama" style="width:100%">
+      <div class="container">
+        <h2>Barack Obama</h2>
+        <p class="title">President</p>
+        <p>1961 – Present</p>
+        <p>Affordable Care Act, First African-American President</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<hr>
+
+  <!-- Weekly Schedule Table (from Code B) -->
+  <section>
+    <h2>Weekly Schedule</h2>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Description</th>
+        <th>Place</th>
+        <th>Type</th>
+        <th>Notes</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>2025-09-01</td>
+        <td>19:30</td>
+        <td>22:30</td>
+        <td>Cooking Class</td>
+        <td>The Cooking Table, La Estancia</td>
+        <td>Recreational</td>
+        <td>Weekly</td>
+        <td>📕 Busy</td>
+      </tr>
+      <tr>
+        <td>2025-09-02</td>
+        <td>19:30</td>
+        <td>21:30</td>
+        <td>Philosophy Talk</td>
+        <td>School</td>
+        <td>Philisophic</td>
+        <td>Topic: What type of good is justice?</td>
+        <td>📕 Busy</td>
+      </tr>
+    </table>
+  </section>
+
+  <hr>
+  
+  <!-- Weekly Schedule Form (from Code B) -->
+  <section>
+    <h2>Add to Weekly Schedule</h2>
+    <form>
+      <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+      </div>
+      <div>
+        <label for="start">Time start:</label>
+        <input type="time" id="start" name="start">
+      </div>
+      <div>
+        <label for="end">Time end:</label>
+        <input type="time" id="end" name="end">
+      </div>
+      <div>
+        <label for="activity">Activity:</label>
+        <input type="text" id="activity" name="activity">
+      </div>
+      <div>
+        <label for="place">Place:</label>
+        <input type="text" id="place" name="place">
+      </div>
+      <div>
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+          <option>School</option>
+          <option>Personal</option>
+          <option>Professional</option>
+          <option>Family</option>
+          <option>Other</option>
+          <option>Recreational</option>
+          <option>Philisophic</option>
+        </select>
+      </div>
+      <div>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+      <div>
+        <label for="flag">Flag (choose color):</label>
+        <input type="color" id="flag" name="flag">
+      </div>
+      <div>
+        <label>
+          <input type="checkbox" name="status" value="free"> Free
+        </label>
+        <label>
+          <input type="checkbox" name="status" value="busy"> Busy
+        </label>
+      </div>
+      <div>
+        <input type="submit" value="Add to Schedule">
+      </div>
+    </form>
+  </section> 
+  <img src = "/images/Mountainnpng.png" class = "static-img" alt = "mountain">
 </body>
 
 </html>
