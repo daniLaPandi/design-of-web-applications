@@ -1,3 +1,326 @@
+/* --------------------
+    General Body & Background
+-------------------- */
 body {
-  margin: 0;
+    font-family: 'Merriweather', serif; /* Changed font for entire site */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8f8; /* Added background color */
+    color: #333;
+    text-align: center; /* Center all elements */
+}
+
+/* --------------------
+    Inline Divs
+-------------------- */
+.inline-divs {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* --------------------
+    Header / h1
+-------------------- */
+header {
+    background: #90a565; /* keep header color */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Sacramento', cursive; /* Changed font */
+    color: #3a6b5a; /* Adjusted color to play well with background */
+    font-size: 5.5rem; /* Increased font size */
+    margin: 50px; /* Added margin */
+}
+
+/* --------------------
+    Title Class
+-------------------- */
+.title-name {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    color: rgb(211, 179, 219);
+    text-align: center;
+}
+
+/* --------------------
+    Sections / h2
+-------------------- */
+section {
+    background: white;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif; /* Changed font */
+    font-size: 2.5rem; /* Font size */
+    color: #506c50; /* Secondary color */
+    border-bottom: 2px solid rgb(211, 179, 219);
+    padding-bottom: 10px; /* Padded 10px from below */
+    margin-bottom: 1rem;
+}
+
+section h3 {
+    font-family: 'Montserrat', sans-serif; /* Changed font */
+    color: #7a5a9b; /* Third color */
+    margin-top: 1.5rem;
+}
+
+section h4 {
+    margin-top: 1rem;
+    font-weight: normal;
+    color: #506c50;
+}
+
+/* --------------------
+    Images
+-------------------- */
+.dani-image {
+        width: fit-content;
+        height: 400px;
+        margin-top: -30px;
+    }
+
+.school-photos, .fav-photos {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Make logos round */
+    object-fit: cover;
+    object-position: center;
+    display: inline-block;
+}
+
+.hobbies-section {
+    position: relative; /* Needed for sticky images inside this section */
+}
+
+.sticky-img.left {
+    position: sticky;
+    top: 0;
+    left: 7000px;
+    width: 100px; /* Adjust size as needed */
+    z-index: 1000; /* Keep it above other content */
+}
+
+.sticky-img.right {
+    position: sticky;
+    top: 0;
+    right: 7000px;
+    width: 100px; /* Adjust size as needed */
+    z-index: 1000;
+}
+
+.static-img {
+    width: 200px;
+}
+
+
+/* --------------------
+    Lists
+-------------------- */
+ul, ol {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    text-align: left; /* Lists inside section remain left-aligned */
+}
+
+li {
+    margin-bottom: 0.5rem;
+    vertical-align: center;
+}
+
+/* --------------------
+    Blockquote
+-------------------- */
+blockquote {
+    font-style: italic;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid #59725c;
+    background: #f9f9ff;
+}
+
+/* --------------------
+    Tables
+-------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background: #90a565;
+    color: white;
+}
+img.table-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --------------------
+    Forms
+-------------------- */
+form {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 1rem auto;
+}
+form div {
+    margin-bottom: 10px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+textarea {
+    height: 80px;
+}
+
+/* --------------------
+    HR Styling
+-------------------- */
+hr {
+    border: none;
+    border-top: 6px dotted #EAF6F6;
+    width: 4%; /* Width relative to screen */
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/* --------------------
+    Links
+-------------------- */
+a {
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    color: #333; /* Default color */
+}
+
+a:hover {
+    color: green;
+}
+/* Alternate section background for even sections */
+        section:nth-of-type(even) {
+            background-color: #e1d6ec; /* Light secondary color */
+        }
+
+        /* Form styling */
+        form {
+            background-color: #dff0f0; /* Complementary form background */
+            border: 2px dotted #90a565;
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            border-radius: 10px;
+            background-color: #e1d7cc; /* Inputs contrast with form background */
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+        
+        }
+
+        form input[type="submit"] {
+            cursor: pointer;
+            background-color: #90a565;
+            color: rgb(255, 255, 255);
+            border: none;
+        }
+
+        /* Team Version Format*/
+.row {
+  display: flex;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  gap: 16px;       /* space between cards */
+}
+.column {
+  float: left;
+  width: 18%;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100px;
+    display: block;
+  }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.inline-divs {
+    display: inline-block;
+    margin-right: 20px;
 }
