@@ -1,3 +1,20 @@
-body {
+.red {
+    background-color: red;
+    height: 1000px;
+    width: 500px;
     margin: 0;
+    display: inline-block;
+}
+.blue {
+    background-color: blue;
+    height: 1000px;
+    width: 500px;    margin: 0;
+    display: inline-block;
+}
+.yellow {
+    background-color: rgb(211, 179, 38);
+    height: 1000px;
+    width: 500px;
+    margin: 0;
+    display: inline-block;
 }
