@@ -208,8 +208,7 @@ textarea {
 /* --------------------
     HR Styling
 -------------------- */
-hr {
-    border: none;
+.hr {
     border-top: 6px dotted #EAF6F6;
     width: 4%; /* Width relative to screen */
     margin-left: 100px;
@@ -270,7 +269,7 @@ a:hover {
 }
 .column {
   float: left;
-  width: 18%;
+  width: 30%;
   margin-bottom: 16px;
   padding: 8px;
 }
