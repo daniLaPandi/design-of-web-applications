@@ -16,11 +16,17 @@
             var number = parseInt(document.getElementById("num").value);
             var maxNum = parseInt(1299827);
             if (number < maxNum && !isNaN(number)) {
-                for (var i = number + 1; i < maxNum; i++) {
+                
+                for (var i = number + 1; i < Math.sqrt(maxNum); i++) {
                     //TODO: check if the current number is a prime or not
                     // If it is, then return it
-                    continue;
+                    if (isPrime(i)) {
+                        alert("The next prime number after " + number + " is " + i);
+                        return;
+                    }
                 }
+                alert("No prime number was found below " + maxNum);
+
             } else {
                 window.alert("Please Enter Number Below 1299827 or Enter A Valid Integer");
                 id.value = "";
@@ -41,7 +47,7 @@
     <form id="form1" runat="server">
         <div>
             <input type="text" id="num" />
-            <button id="btn" onclick="checkPrime();return false">
+            <button id="btn" onclick="checkPrime(); return false">
                 Click To Get Next Prime Number</button>
         </div>
     </form>
