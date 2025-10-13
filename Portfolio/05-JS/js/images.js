@@ -62,9 +62,11 @@ function component(width, height, color, x, y, type) {
     this.y += this.speedY;
     if (this.type == "image") {
       if (this.x >= canvasWidth - this.width / 2 || this.x <= 0) {
+        this.speedX = -this.speedX; // reverses horizontal direction
         //TODO: make the image bounce back when reaching the edges
       }
       if (this.y >= canvasHeight - this.height / 2 || this.y <= 0) {
+        this.speedY = -this.speedY; // reverses vertical direction
         //TODO: make the image bounce back when reaching the edges
       }
     }
@@ -85,12 +87,23 @@ function moveup() {
 
 function movedown() {
   //TODO: implement the move down functionality
+    myGamePiece.speedY += 1;
 }
 
 function moveleft() {
   //TODO: implement the move left functionality
+    myGamePiece.speedX -= 1;
+
 }
 
 function moveright() {
   myGamePiece.speedX += 1;
 }
+
+// i like to use the arrows more
+document.addEventListener("keydown", function(e) {
+  if (e.key === "ArrowUp") moveup();
+  if (e.key === "ArrowDown") movedown();
+  if (e.key === "ArrowLeft") moveleft();
+  if (e.key === "ArrowRight") moveright();
+});
