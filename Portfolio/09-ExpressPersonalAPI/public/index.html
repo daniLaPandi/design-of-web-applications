@@ -1,0 +1,74 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express test</title>
+</head>
+
+<body>
+    <% if (locals.error) { %>
+        <h3>
+            <%= error %>
+        </h3>
+        <% } %>
+            <form action="/greet" method="get">
+                Register:
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="submit" value="go next">
+            </form>
+
+</body>
+
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang = "en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express test</title>
+    <script>
+      function updateTaskList(tasks) {
+        const ul = document.getElementById('taskList');
+        ul.innerHTML = tasks.map((task, i) => `
+          <li>
+            ${task}
+            <a href="/task/delete/${i}">🗑️</a>
+            <a href="/task/up/${i}">⬆️</a>
+            <a href="/task/down/${i}">⬇️</a>
+          </li>
+        `).join('');
+      }
+
+      fetch('/task')
+        .then(res => res.json())
+        .then(updateTaskList);
+    </script>
+
+  </head>
+  <body>
+    <h1>Greeting Page</h1>
+    <form action="/greet" method="get">
+        Register:
+        <input type="text" name="name" placeholder="Enter your name" required />
+        <button type="submit">Greet Me</button>
+    </form>
+
+    <hr />
+    <h2>TODO List</h2>
+    <form action="/task" method="post">
+      <input type="text" name="task" placeholder="Add new task" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="taskList"></ul>
+  </body>
+</html>
