@@ -1,0 +1,28 @@
+<%- include('partials/header', { title: 'Home' }) %>
+
+<h2>Welcome back, <%= name %>!</h2>
+
+<form action="/home" method="post">
+  <input type="text" name="title" placeholder="Post title" required>
+  <textarea name="content" placeholder="Write something..." required></textarea>
+  <button type="submit">Add Post</button>
+</form>
+
+<hr>
+
+<h3>Your Posts:</h3>
+<ul>
+  <% if (posts.length === 0) { %>
+    <p>No posts yet.</p>
+  <% } else { %>
+    <% posts.forEach(post => { %>
+      <li>
+        <strong><%= post.title %></strong><br>
+        <%= post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %>
+        <a href="/post/<%= post.id %>">Read More</a>
+      </li>
+    <% }) %>
+  <% } %>
+</ul>
+
+<%- include('partials/footer') %>
