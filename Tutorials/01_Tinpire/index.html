@@ -5,30 +5,238 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tinpire - Finding love on evey corner of the empire</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
 
   <!-- Title -->
-  <section id="title">
+  <section id="title" class = "gradient-background">
+    <header role="banner" class="hero-bg py-5">
+      <div class="container">
+        <div class="row align-items-center text-center text-md-start">
+          
+          <!-- hero component -->
+          <div class="col-md-6 text-white">
+            <h1 class="display-3 fw-bold">Meet new and interesting troopers nearby.</h1>
+            <p class="lead mb-4"></p>
 
+            <div class="d-flex justify-content-center justify-content-md-start gap-2">
+              <!-- button for apple -->
+              <a class="btn btn-lg btn-primary redish" href="#" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-apple mb-1" viewBox="0 0 16 16">
+                  <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Z" />
+                  <path d="M14.496 11.741c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
+                </svg>
+                Download
+              </a>
+
+              <!-- button for google play -->
+              <a class="btn btn-lg btn-outline-light" href="#" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-google-play mb-1" viewBox="0 0 16 16">
+                  <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z"/>
+                </svg>
+                Download
+              </a>
+            </div>
+          </div>
+
+          <!-- the image -->
+          <div class="col-md-6 text-center mt-4 mt-md-0">
+            <img src="/com111-class/Tutorials/01_Tinpire/images/iphone.png"
+                alt="Hero Image"
+                class="img-fluid"
+                style="max-width: 400px;">
+          </div>
+
+        </div>
+      </div>
+    </header>
   </section>
+
   <!-- Features -->
-  <section id="features">
+  <section id="features" class="py-5 bg-light">
+    <div class="container text-center">
 
+      <!-- feature items -->
+      <div class="row g-4">
+        <!-- feature 1 -->
+        <div class="col-md-4">
+          <div class="feature-icon f1 bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3 f1" style="width: 80px; height: 80px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" fill="white" class="bi bi-check2-circle rounded-circle" viewBox="0 0 16 16">
+              <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+              <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+            </svg>
+          </div>
+          <h3 class="fs-4 fw-semibold">Easy to use.</h3>
+          <p class="text-muted">Even YOU wouldn't miss that shot.</p>
+        </div>
+
+        <!-- feature 2 -->
+        <div class="col-md-4">
+          <div class="feature-icon f2 bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" fill="white" class="bi bi-mortarboard rounded-circle" viewBox="0 0 16 16">
+              <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z"/>
+              <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
+            </svg>
+          </div>
+          <h3 class="fs-4 fw-semibold">Elite Clientele.</h3>
+          <p class="text-muted">We have all the units, even the secret ones.</p>
+        </div>
+
+        <!-- feature 3 -->
+        <div class="col-md-4">
+          <div class="feature-icon f3 bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" fill="white" class="bi bi-arrow-through-heart" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l.53-.53c-.771-.802-1.328-1.58-1.704-2.32-.798-1.575-.775-2.996-.213-4.092C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182a21.86 21.86 0 0 1-2.685-2.062l-.539.54V14a.5.5 0 0 1-.146.354l-1.5 1.5Zm2.893-4.894A20.419 20.419 0 0 0 8 12.71c2.456-1.666 3.827-3.207 4.489-4.512.679-1.34.607-2.42.215-3.185-.817-1.595-3.087-2.054-4.346-.761L8 4.62l-.358-.368c-1.259-1.293-3.53-.834-4.346.761-.392.766-.464 1.845.215 3.185.323.636.815 1.33 1.519 2.065l1.866-1.867a.5.5 0 1 1 .708.708L5.747 10.96Z" />
+            </svg>
+          </div>
+          <h3 class="fs-4 fw-semibold">Guaranteed to work.</h3>
+          <p class="text-muted">Find the love of your life or your credits back.</p>
+        </div>
+      </div>
+    </div>
   </section>
+
   <!-- Testimonial -->
-  <section id="testimonial">
+  <section id="testimonial" class="py-5 bg-light">
+    <div class="container py-5 testimonialBack">
+      <div class="row align-items-center text-center text-md-start g-5">
+        
+        <!-- testimonial image -->
+        <div class="col-md-5">
+          <img src="/com111-class/Tutorials/01_Tinpire/images/pilot.jpg" 
+              alt="Happy Trooper"
+              class="testimonial-img img-fluid mx-auto d-block">
+        </div>
 
+        <!-- testimonial text -->
+        <div class="col-md-7">
+          <h2 class="fw-semibold mb-4 text-light">"I no longer have to break regulation by removing my helmet for love. I've found the cutest buckethead in the empire"</h2>
+          <h5 class="fw-semibold mb-1 text-light">Kasan Moor</h5>
+          <p class="text-muted">128th TIE Interceptor Squad</p>
+        </div>
+      </div>
+
+      <!-- logos row -->
+      <div class="row text-center align-items-center justify-content-center mt-5 g-4">
+        <div class="col-6 col-md-3 col-lg-2">
+          <img src="/com111-class/Tutorials/01_Tinpire/images/death_star.jpeg" alt="Partner 1" class="img-fluid roundedEdge">
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <img src="/com111-class/Tutorials/01_Tinpire/images/Imperial_Department_of_Military_Research.png" alt="Partner 2" class="img-fluid roundedEdge">
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <img src="/com111-class/Tutorials/01_Tinpire/images/Inquisitors.png" alt="Partner 3" class="img-fluid roundedEdge">
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <img src="/com111-class/Tutorials/01_Tinpire/images/ImplGuardBanner.png" alt="Partner 4" class="img-fluid">
+        </div>
+      </div>
+    </div>
   </section>
+
   <!-- Pricing -->
-  <section id="pricing">
+  <section id="pricing" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-normal mb-5 display-4">A Plan for Every Trooper's Needs</h2>
+      <p class = "fs-5 text-body-secondary">Simple and affordable price plans for you.</p>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
+        <!-- trooper plan -->
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm f1b">
+            <div class="card-header py-3 f1 text-white">
+              <h4 class="my-0 fw-normal">Trooper</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title fw-bold">$0<small class="text-muted fw-light">/mo</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>5 Matches Per Day</li>
+                <li>10 Messages Per Day</li>
+                <li>Unlimited App Usage</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg" style = "background-color: rgb(36, 31, 158); color: white">Sign up</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- commander plan -->
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm f2b">
+            <div class="card-header py-3 f2 text-white">
+              <h4 class="my-0 fw-normal">Commander</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title fw-bold">$15<small class="text-muted fw-light">/mo</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Unlimited Matches</li>
+                <li>Unlimited Messages</li>
+                <li>Unlimited App Usage</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg" style = "background-color: rgb(89, 25, 89); color: white">Get started</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- grand moff plan -->
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm f3b">
+            <div class="card-header py-3 f3 text-light border-warning">
+              <h4 class="my-0 fw-normal">Grand Moff</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title fw-bold">$29<small class="text-muted fw-light">/mo</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Priority Listing</li>
+                <li>Unlimited Matches & Messages</li>
+                <li>Unlimited App Usage</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg" style = "background-color: rgb(109, 30, 59); color: white">Join now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
+
   <!-- Footer -->
   <section id="footer">
+    <footer class="footer mt-auto py-5 gradient-background text-white">
+      <div class="container">
+        <div class="row gy-4">
 
+          <!-- brand name-->
+          <div class="col-md-4">
+            <h5 class="fw-bold">© Tinpire</h5>
+          </div>
+
+          <!-- Links -->
+          <div class="col-6 col-md-2">
+            <h6 class="fw-semibold mb-3">Company</h6>
+            <ul class="list-unstyled text-muted">
+              <li><a href="#features" class="text-decoration-none text-white-50">Features</a></li>
+              <li><a href="#testimonial" class="text-decoration-none text-white-50">Testimonial</a></li>
+              <li><a href="#pricing" class="text-decoration-none text-white-50">Pricing</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <hr class="border-secondary my-4">
+
+        <div class="text-center text-muted small">
+          © 2025 Tinpire. All rights reserved.
+        </div>
+      </div>
+    </footer>
   </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

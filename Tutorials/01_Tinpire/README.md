@@ -22,7 +22,7 @@ Once you have this code in your project, make sure that you customize it to fit 
 ### Features section
 For this section, we can go back to bootstrap examples and identify that this section is pretty much the features component provided in bootstrap's page.
 - Observe how the margins of the components are way over the visual limit that our design has. You can try to fix this with margins and padding, but as a suggestion, try wrapping that component with a div with class container.
-- Customize the component to fit our design. Remember the texts are provided for your. The images that are in the design are also provided as svg in the source code
+- Customize the component to fit our design. Remember the texts are provided for you. The images that are in the design are also provided as svg in the source code
 - Observe that the background of the images is not quite as the design. In the design the images have rounded background, while here we have a squared one.
     - Checking on the page where we got the source code for the features, we can see that they do have rounded corners. Using again Chrome's tools, try to find how they are achieving that style.
     - **Hint:** _border-radius_
@@ -111,7 +111,7 @@ Unlimited App Usage
 
 Grand Moff
 $29/mo
-Pirority Listing
+Priority Listing
 Unlimited Matches & Messages
 Unlimited App Usage
 
