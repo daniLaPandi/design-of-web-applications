@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Test</title>
+</head>
+
+<body>
+
+    <!-- Error message -->
+    <% if (locals.error) { %>
+        <h3 style="color: red;">
+            <%= error %>
+        </h3>
+    <% } %>
+
+    <!-- Form to register name -->
+    <form action="/greet" method="get">
+        Register:
+        <input type="text" name="name" id="name" placeholder="Name">
+        <input type="submit" value="Go next">
+    </form>
+
+    <!-- Form to register tasks -->
+    <form action="/task" method="post">
+        To Do List:
+        <input type="text" name="task" placeholder="New task">
+        <input type="submit" value="Add Task">
+    </form>
+
+    <!-- Greeting message -->
+    <h1>Welcome!</h1>
+    <% if (currentName) { %>
+        <p>Hello, <%= currentName %>!</p>
+    <% } else { %>
+        <p>Hello, guest!</p>
+    <% } %>
+
+    <!-- Gretting everyone in the list (again) -->
+    <p> And hello again to ...</p>
+    <ul>
+        <% names.forEach((name, index) => { %>
+            <li><a href="/greet/<%= index %>"><%= name %></a></li>
+        <% }) %>
+    </ul>
+
+    <!-- Names list -->
+    <h3>Names:</h3>
+    <ul>
+        <% names.forEach(name => { %>
+            <li><%= name %></li>
+        <% }) %>
+    </ul>
+
+    <!-- Tasks list -->
+    <h3>Tasks:</h3>
+    <ul>
+        <% tasks.forEach((task, index) => { %>
+            <li>
+            <%= task %>
+            <a href="/task/delete/<%= index %>">Delete</a>
+            <a href="/task/up/<%= index %>">↑</a>
+            <a href="/task/down/<%= index %>">↓</a>
+            </li>
+        <% }) %>
+    </ul>
+
+</body>
+</html>

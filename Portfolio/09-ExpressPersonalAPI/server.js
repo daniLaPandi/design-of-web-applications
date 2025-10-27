@@ -2,31 +2,30 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // this allows Express to read data from HTML form submissiones
+app.use(express.json()); // allows Express to read JSON data (like from Postman or API clients)
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs'); // uses ejs to render templates
+app.set('views', path.join(__dirname, 'views')); // where to look for templates
 
 let names = [];
 let tasks = [];
+let currentName;
 
-// --- Root route ---
+//  root route 
 app.get('/', (req, res) => {
   res.render('index', { names, tasks, currentName: null });
 });
 
-// --- /greet route ---
+//  /greet route 
 app.get('/greet', (req, res) => {
   const name = req.query.name;
   if (name) names.push(name);
   console.log('New name:', name);
-  res.render('index', { names, tasks, currentName: name });
+  res.render('index', { names, tasks, currentName: name }); // updates after every new name added
 });
 
-// --- /greet/:index ---
+//  /greet/:index 
 app.get('/greet/:index', (req, res, next) => {
   const index = parseInt(req.params.index);
   if (index < 0 || index >= names.length) {
@@ -39,14 +38,14 @@ app.get('/greet/:index', (req, res, next) => {
   res.render('wazzup', { name });
 });
 
-// --- PUT /greet/:name (Postman only) ---
+//  PUT /greet/:name (Postman only) 
 app.put('/greet/:name', (req, res) => {
   const { name } = req.params;
   if (name) names.push(name);
   res.json(names);
 });
 
-// --- Tasks ---
+//  tasks 
 app.get('/task', (req, res) => {
   res.json(tasks); // For Postman
 });
@@ -76,13 +75,13 @@ app.get('/task/down/:index', (req, res) => {
   res.redirect('/');
 });
 
-// --- Error handling ---
+//  error handling 
 app.use((err, req, res, next) => {
   console.error(err.message);
   res.status(err.status || 500).render('error', { message: err.message });
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });

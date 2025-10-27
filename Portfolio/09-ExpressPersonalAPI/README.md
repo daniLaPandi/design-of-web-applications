@@ -1,6 +1,3 @@
-The port I used in 8080, not the expected 3000 because it was already busy.
-
-
 # Express API
 
 This project will help us to test the responses we can get out of our express server, including some error handling processes.
