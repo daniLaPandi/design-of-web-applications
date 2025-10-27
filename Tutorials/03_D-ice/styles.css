@@ -22,3 +22,18 @@ p {
 img {
   width: 80%;
 }
+
+/* color palette */
+.first-color { 
+	background: #d3d6db;
+}
+	
+.second-color { 
+	color: #3a4750; 
+  font-family: Lobster, normal;
+}
+
+.third-color { 
+  font-family: 'Indie Flower', cursive;
+  color: #224d7f;
+}
