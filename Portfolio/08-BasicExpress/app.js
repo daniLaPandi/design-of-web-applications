@@ -2,13 +2,13 @@ const express = require('express'); // part of creating an express server
 const bodyParser = require('body-parser'); // this library helps to read raw data and be able to use it in my code
 const path = require('path'); // also needed to create an express server
 
-const app = express(); // part of creating an express server
+const app = express(); // creates the server instance called app(express server)
 const PORT = 3000;  // this is the door that my computer is listening to for network traffic
 
 // middleware: a function that runs before route handler and can modify the request or response
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// in order to serve the static file of index.html
+// route handler: in order to serve the static file of index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -22,8 +22,7 @@ app.post('/calculate-bmi', (req, res) => {
     const bmi = (weight / (height * height)) * 10000;
 
     res.send(`<h1>Your BMI is ${bmi.toFixed(2)}</h1>
-              <a href="/">Go back</a>`);
-});
+        <a href="/">Go back</a>`)});
 
 // Start server's listening skills lol
 app.listen(PORT, () => {

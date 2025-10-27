@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>BMI Calculator</h1>
-    <form action="/calculate-bmi" method="POST">
+    <form action="/calculate-bmi" method="POST"> <!-- this line of code says which URL endpoint to send data to, and the method 
+        tells it to use the HTTP Post method -->
         <label for="weight">Weight (kg):</label>
         <input type="number" id="weight" name="weight" required><br><br>
 
@@ -15,5 +16,6 @@
 
         <button type="submit" name="submit">Calculate BMI</button>
     </form>
+
 </body>
 </html>
