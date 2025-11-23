@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>F1 Drivers — MongoDB Test</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="../images/StarLion.png" alt="logo" class="logo" />
+      <div>
+        <h1>F1 Drivers Database</h1>
+        <p class="subtitle">Browse, add and edit drivers and teams</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="toggle-view" class="btn btn-secondary">Show Teams</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel form-panel">
+      <h2>Driver Information</h2>
+      <form action="/driver" method="post" id="driver-form" novalidate>
+        <div class="form-row">
+          <label for="number">Number</label>
+          <input id="number" name="number" type="text" required />
+          <label for="code">Code</label>
+          <input id="code" name="code" type="text" placeholder="e.g. VER" required />
+        </div>
+
+        <div class="form-row">
+          <label for="name">Forename</label>
+          <input id="name" name="name" type="text" required />
+          <label for="lname">Surname</label>
+          <input id="lname" name="lname" type="text" required />
+        </div>
+
+        <div class="form-row">
+          <label for="dob">Date of birth</label>
+          <input id="dob" name="dob" type="text" placeholder="dd/mm/yyyy" required />
+          <label for="url">Bio URL</label>
+          <input id="url" name="url" type="url" placeholder="https://..." />
+        </div>
+
+        <div class="form-row">
+          <label for="nation">Nationality</label>
+          <select id="nation" name="nation" required>
+            <% countries.forEach(function(country) { %>
+              <option value="<%= country.code %>"><%= country.label %></option>
+            <% }); %>
+          </select>
+
+          <label for="team">Team</label>
+          <select id="team" name="team" required>
+            <% teams.forEach(function(team) { %>
+              <option value="<%= team.name %>"><%= team.name %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <input type="submit" class="btn btn-primary" value="Add Driver" />
+        </div>
+      </form>
+    </section>
+
+    <section id="driver-list" class="panel list-panel">
+      <h2>Drivers</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>Nationality</th>
+              <th>Team</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% drivers.forEach(function(driver) { %>
+            <tr data-driver-id="<%= driver._id %>">
+              <td class="cell-num"><%= driver.number %></td>
+              <td class="cell-code"><%= driver.code %></td>
+              <td class="cell-name"><%= driver.forename %> <%= driver.surname %></td>
+              <td class="cell-dob"><%= driver.dob %></td>
+              <td class="cell-nationality"><%= driver.nationality %></td>
+              <td class="cell-team"><%= driver.team %></td>
+                        
+              <td class="cell-actions">
+                <button class="btn btn-small edit-btn" data-id="<%= driver._id %>">Edit</button>
+                <button class="btn btn-small btn-danger delete-btn" data-id="<%= driver._id %>">Delete</button>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="team-list" class="panel list-panel" style="display:none;">
+      <h2>Teams</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Drivers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% teams.forEach(function(team) { %>
+            <tr data-team-id="<%= team._id %>">
+              <td class="team-name"><%= team.name %></td>
+
+              <td class="team-drivers">
+                <% if (team.drivers && team.drivers.length > 0) { %>
+                  <ul class="driver-bullet-list">
+                    <% team.drivers.forEach(function(driver) { %>
+                      <li><%= driver.forename %> <%= driver.surname %></li>
+                    <% }); %>
+                  </ul>
+                <% } else { %>
+                  <em>No drivers assigned</em>
+                <% } %>
+              </td>
+                          
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Built for the Express + Mongoose exercise</small>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

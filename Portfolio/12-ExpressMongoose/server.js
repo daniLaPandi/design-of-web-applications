@@ -1,62 +1,158 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
+// server.js
+const express = require('express'); // imports express library to build web server
+const path = require('path'); // imports the path utility to help manage and join directory paths
+const mongoose = require('mongoose'); // imports mongoose, easier to work with the MongoDB database
+const bodyParser = require('body-parser'); // helps server read and understand data sent from a web form
+const csv = require('csv-parse'); // used to read and understad data stored in a CSV file
+const fs = require('fs'); // import file system, lets server read and write files on the compu
+const loadCsvMiddleware = require('./middleware/loadCsv'); // runs this code before a request is processed to make sure inital data is loaded
+const Driver = require('./models/Driver'); // defines the structure (schema) for how Driver data should look in the db
+const Team = require('./models/Team'); // ditto
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.engine("ejs", require("ejs").renderFile);
-app.set("view engine", "ejs");
+const app = express(); // creates the actual Express web aplication (the server itself)
 
-const mongoUrl = "mongodb://127.0.0.1:27017/f1";
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+// === CONFIG ===
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/f1db'; // connects to the local database
+const PORT = process.env.PORT || 3000;
 
-// Definition of a schema
-const teamSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  nationality: String,
-  url: String,
+// === MIDDLEWARE ===
+app.set('view engine', 'ejs'); // tells express to use EJS as the template engine to create dynamic html pages 
+app.set('views', path.join(__dirname, 'views')); // tells express where to find said EJS templates
+app.use('/css', express.static(path.join(__dirname, 'public/css'))); // serve static files to allow access to them from the browser
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/js', express.static(path.join(__dirname, 'public/js')));
+app.use(bodyParser.urlencoded({ extended: true })); //  possible to read and process form data (url encoded and json data sent in requests)
+app.use(bodyParser.json());
+
+// connect to mongo
+mongoose.connect(MONGO_URI, )
+  .then(()=> console.log('Mongo connected'))
+  .catch(err=> console.error('Mongo connection error', err));
+
+// runs localCsvMiddleware to ensure CSV data is loaded on landing route
+app.use('/', loadCsvMiddleware);
+
+// === ROUTES ===
+app.get('/', async (req, res) => { // runs when a user visits the main page with a GET method
+  // middleware ensured teams and drivers exist
+    const drivers = await Driver.find().populate('team').lean();
+    const teams = await Team.find().populate('drivers').lean(); // give every team in collections
+  // A small countries list for the selects (could be expanded)
+  const countries = [
+    { code: 'British', label: 'British' },
+    { code: 'Spanish', label: 'Spanish' },
+    { code: 'German', label: 'German' },
+    { code: 'French', label: 'French' },
+    { code: 'Mexican', label: 'Mexican' },
+    { code: 'Australian', label: 'Australian' },
+    { code: 'Finnish', label: 'Finnish' },
+    { code: 'Danish', label: 'Danish' },
+    { code: 'Dutch', label: 'Dutch' },
+    { code: 'Monegasque', label: 'Monegasque' },
+    { code: 'Canadian', label: 'Canadian' },
+    { code: 'Thai', label: 'Thai' },
+    { code: 'Japanese', label: 'Japanese' },
+    { code: 'Chinese', label: 'Chinese' },
+    { code: 'American', label: 'American' }
+  ];
+  const equipos = [
+    { code: 'Mercedes', label: 'Mercedes' },
+    { code: 'Aston Martin', label: 'Aston Martin' },
+    { code: 'N/A', label: 'N/A' },
+    { code: 'Alpine', label: 'Alpine' },
+    { code: 'Haas', label: 'Haas' },
+    { code: 'Red Bull', label: 'Red Bull' },
+    { code: 'Alpha Tauri', label: 'Alpha Tauri' },
+    { code: 'Alpha Romeo', label: 'Alpha Romeo' },
+    { code: 'Ferrari', label: 'Ferrari' },
+    { code: 'McLaren', label: 'McLaren' },
+    { code: 'Williams', label: 'Williams' },
+  ]
+  res.render('index', { teams, drivers, countries });
 });
-teamSchema.set("strictQuery", true);
 
-const driverSchema = new mongoose.Schema({
-  num: Number,
-  code: String,
-  forename: String,
-  surname: String,
-  dob: Date,
-  nationality: String,
-  url: String,
-  team: teamSchema,
-});
-driverSchema.set("strictQuery", true);
-
-const Team = mongoose.model("Team", teamSchema);
-const Driver = mongoose.model("Driver", driverSchema);
-
-let countries = [
-  { code: "ENG", label: "England" },
-  { code: "SPA", label: "Spain" },
-  { code: "GER", label: "Germany" },
-  { code: "FRA", label: "France" },
-  { code: "MEX", label: "Mexico" },
-  { code: "AUS", label: "Australia" },
-  { code: "FIN", label: "Finland" },
-  { code: "NET", label: "Netherlands" },
-  { code: "CAN", label: "Canada" },
-  { code: "MON", label: "Monaco" },
-  { code: "THA", label: "Thailand" },
-  { code: "JAP", label: "Japan" },
-  { code: "CHI", label: "China" },
-  { code: "USA", label: "USA" },
-  { code: "DEN", label: "Denmark" },
-];
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/html/index.html");
+// Create new driver
+app.post('/driver', async (req, res) => {
+  try {
+    const { number, code, name, lname, dob, url, nation, team } = req.body;
+    // find the team document
+    const teamDoc = await Team.findOne({ name: team });
+    if (!teamDoc) return res.status(400).send('Team not found');
+    // prevent duplicates by unique number or code; update if exists
+    let driver = await Driver.findOne({ number: number });
+    if (driver) {
+      // update existing
+      driver.code = code;
+      driver.forename = name;
+      driver.surname = lname;
+      driver.dob = dob;
+      driver.url = url;
+      driver.nationality = nation;
+      driver.team = teamDoc._id;
+      await driver.save();
+    } else {
+      driver = new Driver({
+        number, code, forename: name, surname: lname,
+        dob, url, nationality: nation, team: teamDoc._id
+      });
+      await driver.save();
+    }
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
 });
 
-app.listen(3000, (err) => {
-  console.log("Listening on port 3000");
+// Update driver via JSON (used by edit-in-place)
+app.put('/driver/:id', async (req, res) => {
+  try {
+    const payload = req.body;
+    const driver = await Driver.findById(req.params.id);
+    if (!driver) return res.status(404).json({ error: 'Driver not found' });
+    if (payload.team) {
+      const teamDoc = await Team.findOne({ name: payload.team });
+      if (!teamDoc) return res.status(400).json({ error: 'Team not found' });
+      driver.team = teamDoc._id;
+    }
+    ['num','code','forename','surname','url','nationality'].forEach(k=>{
+      if (payload[k] !== undefined) driver[k] = payload[k];
+    });
+    if (payload.dob) driver.dob = new Date(payload.dob);
+    await driver.save();
+    const populated = await driver.populate('team').execPopulate();
+    res.json(populated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
+
+// Delete driver
+app.delete('/driver/:id', async (req, res) => {
+  try {
+    await Driver.findByIdAndDelete(req.params.id);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Put team update (editable also)
+app.put('/team/:id', async (req, res) => {
+  try {
+    const team = await Team.findById(req.params.id);
+    if (!team) return res.status(404).json({ error: 'Team not found' });
+    ['name','nationality','url','id'].forEach(k=>{
+      if (req.body[k] !== undefined) team[k] = req.body[k];
+    });
+    await team.save();
+    res.json(team);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.listen(PORT, ()=> console.log(`Server listening ${PORT}`));

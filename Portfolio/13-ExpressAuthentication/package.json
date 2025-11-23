@@ -1,0 +1,26 @@
+{
+  "name": "13-expressauthentication",
+  "version": "1.0.0",
+  "description": "- Using the provided code, crete an app with:\r   - A simple registration form that asks the user for a username, email and password.\r   - Using **passport-local-mongoose** save the information in our database and set the **session** information\r     - Once the user is registered, he should be granted access to the secrets page\r   - Crate a form that will allow the just registered user to access the page only with its user and password.\r   - Implement a _logout_ method\r   - Check that you can no access the page with the path directly in the browser, and that if you are trying to access without authorization, you are sent to either register or login.\r - Setup your secret phrase using a _.env_ file\r - Implement a **google oauth 2.0** strategy and make sure that your user is able to access our page when he is authorized and not when he has not been granted access.",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.4.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
+  }
+}
