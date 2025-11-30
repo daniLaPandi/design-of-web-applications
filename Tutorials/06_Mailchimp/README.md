@@ -20,7 +20,7 @@ In this tutorial, we will create a sigunup screen where we will be able to add e
     - success.html
     - failure.html
 - Initialize the node project using the ```npm init``` command
-- Installl the following packages
+- Install the following packages
     - express
     - request
 - Create our app server and just to check it is running send a "Hello World" message to the front end.

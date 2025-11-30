@@ -1,7 +1,7 @@
 {
   "name": "signup-news",
   "version": "1.0.0",
-  "description": "",
+  "description": "In this tutorial, we will create a sigunup screen where we will be able to add emails and names of people to a mail distribution list using mailchimp's API. We will leverage the knowledge we have achieved with our previous lessons and use some existing templates from Bootstrap in order to speed up our development.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,9 @@
   "author": "G. Castillo",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "body-parser": "^2.2.1",
+    "express": "^4.21.2"
+  },
+  "keywords": [],
+  "type": "commonjs"
 }
