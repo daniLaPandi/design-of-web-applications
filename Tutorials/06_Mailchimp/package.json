@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.1",
+    "dotenv": "^17.2.3",
     "express": "^4.21.2"
   },
   "keywords": [],

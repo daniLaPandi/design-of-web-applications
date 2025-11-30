@@ -1,14 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("https");
+require("dotenv").config();
+
 const port = 3000;
 
 const app = express();
 
-// Mailchimp API credentials
-const apiKey = "48493443c31b2e185648c22297df1fc6-us18";
-const listId = "ce3b4f0c7b";
-const serverPrefix = "us18";
+// Mailchimp API credentials from environment variables
+const apiKey = process.env.MAILCHIMP_API_KEY;
+const listId = process.env.MAILCHIMP_LIST_ID;
+const serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
 
 // Set up body-parser middleware to handle form data
 app.use(bodyParser.urlencoded({ extended: true }));
