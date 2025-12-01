@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const team = row.querySelector('.cell-team').innerText.trim();
 
       // fill form
-      form.querySelector('#num').value = num;
+      form.querySelector('#number').value = num;
       form.querySelector('#code').value = code;
       form.querySelector('#name').value = forename;
       form.querySelector('#lname').value = surname;
@@ -86,14 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ev.preventDefault();
     const formData = new FormData(form);
     const payload = {};
-    formData.forEach((v,k)=> payload[k] = v);
+    formData.forEach((v, k) => payload[k] = v);
     // If dob is in dd/mm/yyyy convert to yyyy-mm-dd if necessary (form already supplies correct)
     try {
       const resp = await fetch(`/driver/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          num: payload.num,
+          number: payload.number,
           code: payload.code,
           forename: payload.name,
           surname: payload.lname,
@@ -115,12 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Team edit-in-place: convert cells to inputs on click of team edit button
-  document.querySelectorAll('#team-list .edit-btn').forEach(btn=>{
+  document.querySelectorAll('#team-list .edit-btn').forEach(btn => {
     btn.addEventListener('click', async (ev) => {
       const tr = btn.closest('tr');
       const id = btn.dataset.id;
       // turn the name and nationality and url cells into inputs
-      ['td:nth-child(2)', 'td:nth-child(3)', 'td:nth-child(4)'].forEach((sel)=>{
+      ['td:nth-child(2)', 'td:nth-child(3)', 'td:nth-child(4)'].forEach((sel) => {
         const cell = tr.querySelector(sel);
         if (!cell) return;
         const text = cell.innerText.trim();

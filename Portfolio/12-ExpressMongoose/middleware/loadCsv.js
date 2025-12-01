@@ -25,7 +25,22 @@ module.exports = async function (req, res, next) {
       bom: true
     }); // cleans up the data
 
-// first handle the driver
+    // 1. Extract and Create Teams first
+    const teamMap = new Map(); // Name -> ObjectId
+
+    for (const r of records) {
+      const teamName = r.current_team ? r.current_team.trim() : null;
+      if (teamName && !teamMap.has(teamName)) {
+        let teamDoc = await Team.findOne({ name: teamName });
+        if (!teamDoc) {
+          teamDoc = new Team({ name: teamName, drivers: [] });
+          await teamDoc.save();
+        }
+        teamMap.set(teamName, teamDoc._id);
+      }
+    }
+
+    // 2. Create/Update Drivers
     for (const r of records) {
       const number = parseInt(r.number);
       if (isNaN(number)) {
@@ -33,9 +48,11 @@ module.exports = async function (req, res, next) {
         continue;
       }
 
-      const existing = await Driver.findOne({ number });
-      if (!existing) {
-        const driver = new Driver({
+      const teamId = r.current_team ? teamMap.get(r.current_team.trim()) : null;
+
+      let driver = await Driver.findOne({ number });
+      if (!driver) {
+        driver = new Driver({
           number: parseInt(r.number, 10),
           code: r.code,
           forename: r.forename,
@@ -43,30 +60,20 @@ module.exports = async function (req, res, next) {
           dob: r.dob,
           nationality: r.nationality,
           url: r.url,
-          team: r.current_team
+          team: teamId
         });
         await driver.save();
+      } else {
+        // Update existing driver's team if needed (optional, but good for consistency)
+        if (teamId && (!driver.team || driver.team.toString() !== teamId.toString())) {
+          driver.team = teamId;
+          await driver.save();
+        }
       }
 
-    }
-
-// second handle the team
-    for (const r of records) {
-      const teamName = r.current_team ? r.current_team.trim() : null; // if the team exists assign it
-      let teamDoc = null;
-
-      if (teamName) {
-        teamDoc = await Team.findOne({ name: teamName })
-
-        if (!teamDoc) {
-          const tempDrivers = await Driver.find({ team: teamName })
-
-          teamDoc = new Team({
-            name: teamName,
-            drivers: tempDrivers
-          })
-          await teamDoc.save();
-        }
+      // Update the team's drivers array
+      if (teamId) {
+        await Team.findByIdAndUpdate(teamId, { $addToSet: { drivers: driver._id } });
       }
     }
 

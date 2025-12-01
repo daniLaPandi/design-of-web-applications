@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,6 +8,7 @@
   <title>F1 Drivers — MongoDB Test</title>
   <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="brand">
@@ -50,15 +52,19 @@
           <label for="nation">Nationality</label>
           <select id="nation" name="nation" required>
             <% countries.forEach(function(country) { %>
-              <option value="<%= country.code %>"><%= country.label %></option>
-            <% }); %>
+              <option value="<%= country.code %>">
+                <%= country.label %>
+              </option>
+              <% }); %>
           </select>
 
           <label for="team">Team</label>
           <select id="team" name="team" required>
             <% teams.forEach(function(team) { %>
-              <option value="<%= team.name %>"><%= team.name %></option>
-            <% }); %>
+              <option value="<%= team.name %>">
+                <%= team.name %>
+              </option>
+              <% }); %>
           </select>
         </div>
 
@@ -85,20 +91,33 @@
           </thead>
           <tbody>
             <% drivers.forEach(function(driver) { %>
-            <tr data-driver-id="<%= driver._id %>">
-              <td class="cell-num"><%= driver.number %></td>
-              <td class="cell-code"><%= driver.code %></td>
-              <td class="cell-name"><%= driver.forename %> <%= driver.surname %></td>
-              <td class="cell-dob"><%= driver.dob %></td>
-              <td class="cell-nationality"><%= driver.nationality %></td>
-              <td class="cell-team"><%= driver.team %></td>
-                        
-              <td class="cell-actions">
-                <button class="btn btn-small edit-btn" data-id="<%= driver._id %>">Edit</button>
-                <button class="btn btn-small btn-danger delete-btn" data-id="<%= driver._id %>">Delete</button>
-              </td>
-            </tr>
-            <% }); %>
+              <tr data-driver-id="<%= driver._id %>">
+                <td class="cell-num">
+                  <%= driver.number %>
+                </td>
+                <td class="cell-code">
+                  <%= driver.code %>
+                </td>
+                <td class="cell-name">
+                  <%= driver.forename %>
+                    <%= driver.surname %>
+                </td>
+                <td class="cell-dob">
+                  <%= driver.dob %>
+                </td>
+                <td class="cell-nationality">
+                  <%= driver.nationality %>
+                </td>
+                <td class="cell-team">
+                  <%= driver.team ? driver.team.name : 'N/A' %>
+                </td>
+
+                <td class="cell-actions">
+                  <button class="btn btn-small edit-btn" data-id="<%= driver._id %>">Edit</button>
+                  <button class="btn btn-small btn-danger delete-btn" data-id="<%= driver._id %>">Delete</button>
+                </td>
+              </tr>
+              <% }); %>
           </tbody>
         </table>
       </div>
@@ -116,23 +135,28 @@
           </thead>
           <tbody>
             <% teams.forEach(function(team) { %>
-            <tr data-team-id="<%= team._id %>">
-              <td class="team-name"><%= team.name %></td>
+              <tr data-team-id="<%= team._id %>">
+                <td class="team-name">
+                  <%= team.name %>
+                </td>
 
-              <td class="team-drivers">
-                <% if (team.drivers && team.drivers.length > 0) { %>
-                  <ul class="driver-bullet-list">
-                    <% team.drivers.forEach(function(driver) { %>
-                      <li><%= driver.forename %> <%= driver.surname %></li>
-                    <% }); %>
-                  </ul>
-                <% } else { %>
-                  <em>No drivers assigned</em>
-                <% } %>
-              </td>
-                          
-            </tr>
-            <% }); %>
+                <td class="team-drivers">
+                  <% if (team.drivers && team.drivers.length> 0) { %>
+                    <ul class="driver-bullet-list">
+                      <% team.drivers.forEach(function(driver) { %>
+                        <li>
+                          <%= driver.forename %>
+                            <%= driver.surname %>
+                        </li>
+                        <% }); %>
+                    </ul>
+                    <% } else { %>
+                      <em>No drivers assigned</em>
+                      <% } %>
+                </td>
+
+              </tr>
+              <% }); %>
           </tbody>
         </table>
       </div>
@@ -145,4 +169,5 @@
 
   <script src="../js/script.js"></script>
 </body>
+
 </html>

@@ -25,9 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true })); //  possible to read and pro
 app.use(bodyParser.json());
 
 // connect to mongo
-mongoose.connect(MONGO_URI, )
-  .then(()=> console.log('Mongo connected'))
-  .catch(err=> console.error('Mongo connection error', err));
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('Mongo connected'))
+  .catch(err => console.error('Mongo connection error', err));
 
 // runs localCsvMiddleware to ensure CSV data is loaded on landing route
 app.use('/', loadCsvMiddleware);
@@ -35,39 +35,16 @@ app.use('/', loadCsvMiddleware);
 // === ROUTES ===
 app.get('/', async (req, res) => { // runs when a user visits the main page with a GET method
   // middleware ensured teams and drivers exist
-    const drivers = await Driver.find().populate('team').lean();
-    const teams = await Team.find().populate('drivers').lean(); // give every team in collections
-  // A small countries list for the selects (could be expanded)
-  const countries = [
-    { code: 'British', label: 'British' },
-    { code: 'Spanish', label: 'Spanish' },
-    { code: 'German', label: 'German' },
-    { code: 'French', label: 'French' },
-    { code: 'Mexican', label: 'Mexican' },
-    { code: 'Australian', label: 'Australian' },
-    { code: 'Finnish', label: 'Finnish' },
-    { code: 'Danish', label: 'Danish' },
-    { code: 'Dutch', label: 'Dutch' },
-    { code: 'Monegasque', label: 'Monegasque' },
-    { code: 'Canadian', label: 'Canadian' },
-    { code: 'Thai', label: 'Thai' },
-    { code: 'Japanese', label: 'Japanese' },
-    { code: 'Chinese', label: 'Chinese' },
-    { code: 'American', label: 'American' }
-  ];
-  const equipos = [
-    { code: 'Mercedes', label: 'Mercedes' },
-    { code: 'Aston Martin', label: 'Aston Martin' },
-    { code: 'N/A', label: 'N/A' },
-    { code: 'Alpine', label: 'Alpine' },
-    { code: 'Haas', label: 'Haas' },
-    { code: 'Red Bull', label: 'Red Bull' },
-    { code: 'Alpha Tauri', label: 'Alpha Tauri' },
-    { code: 'Alpha Romeo', label: 'Alpha Romeo' },
-    { code: 'Ferrari', label: 'Ferrari' },
-    { code: 'McLaren', label: 'McLaren' },
-    { code: 'Williams', label: 'Williams' },
-  ]
+  const drivers = await Driver.find().populate('team').lean();
+  const teams = await Team.find().populate('drivers').lean(); // give every team in collections
+
+  // Get unique nationalities from existing drivers in the database
+  const uniqueNationalities = await Driver.distinct('nationality');
+  const countries = uniqueNationalities
+    .filter(n => n && n.trim()) // remove null/empty values
+    .sort()
+    .map(nat => ({ code: nat, label: nat }));
+
   res.render('index', { teams, drivers, countries });
 });
 
@@ -80,6 +57,8 @@ app.post('/driver', async (req, res) => {
     if (!teamDoc) return res.status(400).send('Team not found');
     // prevent duplicates by unique number or code; update if exists
     let driver = await Driver.findOne({ number: number });
+    const oldTeamId = driver ? driver.team : null;
+
     if (driver) {
       // update existing
       driver.code = code;
@@ -97,6 +76,15 @@ app.post('/driver', async (req, res) => {
       });
       await driver.save();
     }
+
+    // Update team's drivers array: remove from old team if changed
+    if (oldTeamId && oldTeamId.toString() !== teamDoc._id.toString()) {
+      await Team.findByIdAndUpdate(oldTeamId, { $pull: { drivers: driver._id } });
+    }
+
+    // Add to new team (using $addToSet to prevent duplicates)
+    await Team.findByIdAndUpdate(teamDoc._id, { $addToSet: { drivers: driver._id } });
+
     res.redirect('/');
   } catch (err) {
     console.error(err);
@@ -110,17 +98,31 @@ app.put('/driver/:id', async (req, res) => {
     const payload = req.body;
     const driver = await Driver.findById(req.params.id);
     if (!driver) return res.status(404).json({ error: 'Driver not found' });
+
+    const oldTeamId = driver.team;
+
     if (payload.team) {
       const teamDoc = await Team.findOne({ name: payload.team });
       if (!teamDoc) return res.status(400).json({ error: 'Team not found' });
       driver.team = teamDoc._id;
+
+      // Update team's drivers array: remove from old team if changed
+      if (oldTeamId && oldTeamId.toString() !== teamDoc._id.toString()) {
+        await Team.findByIdAndUpdate(oldTeamId, { $pull: { drivers: driver._id } });
+      }
+
+      // Add to new team (using $addToSet to prevent duplicates)
+      await Team.findByIdAndUpdate(teamDoc._id, { $addToSet: { drivers: driver._id } });
     }
-    ['num','code','forename','surname','url','nationality'].forEach(k=>{
+
+    ['number', 'code', 'forename', 'surname', 'url', 'nationality'].forEach(k => {
       if (payload[k] !== undefined) driver[k] = payload[k];
     });
-    if (payload.dob) driver.dob = new Date(payload.dob);
+
+    if (payload.dob) driver.dob = payload.dob;
+
     await driver.save();
-    const populated = await driver.populate('team').execPopulate();
+    const populated = await driver.populate('team');
     res.json(populated);
   } catch (err) {
     console.error(err);
@@ -131,6 +133,11 @@ app.put('/driver/:id', async (req, res) => {
 // Delete driver
 app.delete('/driver/:id', async (req, res) => {
   try {
+    const driver = await Driver.findById(req.params.id);
+    if (driver && driver.team) {
+      // Remove driver from team's drivers array
+      await Team.findByIdAndUpdate(driver.team, { $pull: { drivers: driver._id } });
+    }
     await Driver.findByIdAndDelete(req.params.id);
     res.json({ ok: true });
   } catch (err) {
@@ -144,7 +151,7 @@ app.put('/team/:id', async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);
     if (!team) return res.status(404).json({ error: 'Team not found' });
-    ['name','nationality','url','id'].forEach(k=>{
+    ['name', 'nationality', 'url', 'id'].forEach(k => {
       if (req.body[k] !== undefined) team[k] = req.body[k];
     });
     await team.save();
@@ -155,4 +162,4 @@ app.put('/team/:id', async (req, res) => {
   }
 });
 
-app.listen(PORT, ()=> console.log(`Server listening ${PORT}`));
+app.listen(PORT, () => console.log(`Server listening ${PORT}`));
