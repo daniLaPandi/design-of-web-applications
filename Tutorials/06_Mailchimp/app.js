@@ -12,6 +12,12 @@ const apiKey = process.env.MAILCHIMP_API_KEY;
 const listId = process.env.MAILCHIMP_LIST_ID;
 const serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
 
+// Debug: Log environment variables
+console.log("Environment variables loaded:");
+console.log("API Key:", apiKey ? "✓ Loaded" : "✗ Missing");
+console.log("List ID:", listId ? "✓ Loaded" : "✗ Missing");
+console.log("Server Prefix:", serverPrefix ? "✓ Loaded" : "✗ Missing");
+
 // Set up body-parser middleware to handle form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,8 +35,11 @@ app.post("/", (req, res) => {
     const lastName = req.body.lName;
     const email = req.body.email;
 
+    console.log("Form submission received:", { firstName, lastName, email });
+
     // Build the Mailchimp API URL
     const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}`;
+    console.log("Mailchimp URL:", url);
 
     // Create the data object for Mailchimp
     const data = {
@@ -72,11 +81,13 @@ app.post("/", (req, res) => {
 
         // Process the complete response
         response.on("end", () => {
+            console.log("Response status code:", response.statusCode);
+
             // Check if the status code is 200
             if (response.statusCode === 200) {
                 try {
                     const parsedData = JSON.parse(responseData);
-                    console.log("Mailchimp response:", parsedData);
+                    console.log("Mailchimp response:", JSON.stringify(parsedData, null, 2));
 
                     // Check if there are any errors
                     if (parsedData.error_count && parsedData.error_count > 0) {
@@ -85,6 +96,7 @@ app.post("/", (req, res) => {
                         res.sendFile(__dirname + "/failure.html");
                     } else {
                         // Success!
+                        console.log("Success! User subscribed.");
                         res.sendFile(__dirname + "/success.html");
                     }
                 } catch (error) {
@@ -92,7 +104,8 @@ app.post("/", (req, res) => {
                     res.sendFile(__dirname + "/failure.html");
                 }
             } else {
-                console.log("Status code:", response.statusCode);
+                console.log("Non-200 status code:", response.statusCode);
+                console.log("Response body:", responseData);
                 res.sendFile(__dirname + "/failure.html");
             }
         });
